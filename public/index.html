@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Kanban Board</title>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-6">
+
+     <h1 class="text-6xl p-4 text-blue-500 font-bold mb-4">Kanban Board</h1>
+
+    <!-- Search & Add Button -->
+    <div class="mb- flex space-x-4">
+        <input id="searchField" type="text" class="border border-gray-400 rounded p-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search tasks...">
+        <button id="addButton" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Add</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="taskModal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative">
+            <!-- Close Button -->
+            <button id="closeButton" class="absolute top-2 right-2 text-gray-500 hover:text-black text-xl">&times;</button>
+
+            <p id="paragraphId" class="text-xl font-semibold mb-4 text-center">Add New Task</p>
+            
+            <!-- Task Form -->
+            <div class="space-y-3">
+                <label for="titleField" class="block font-medium">Title:</label>
+                <input type="text" id="titleField" class="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Title of Task">
+                
+                <label for="descriptionField" class="block font-medium">Description:</label>
+                <textarea id="descriptionField" class="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Description of Task"></textarea>
+            </div>
+
+            <!-- Task Status Selection -->
+            <label class="block font-medium mt-3">Status:</label>
+            <select id="taskStatus" class="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="" selected disabled hidden>Select Status</option>
+                <option value="todo">To Do</option>
+                <option value="inprogress">In Progress</option>
+                <option value="completed">Completed</option>
+            </select>
+            
+            <!-- Save Button -->
+            <div class="mt-4 flex justify-end
+            ">
+              
+                <button id="saveButton" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">Save</button>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Kanban Board -->
+     
+    <div class="grid grid-cols-3 gap-6 w-full max-w-4xl  rounded-lg p-4 mt-8">
+        <!-- To Do Column -->
+        <div class="flex flex-col space-y-4 ">
+        <div class="bg-blue-100 p-4 rounded-lg shadow-lg border border-gray-300">
+            <h2 class="text-xl font-semibold text-blue-700">To Do</h2>
+        </div>
+        <div id="todoList" class="space-y-2 border border-gray-300  h-[100vh] p-4 rounded-lg overflow-y-auto max-h-96">
+            <!-- Tasks will be added here dynamically -->
+        </div>
+        </div>
+
+        <!-- In Progress Column -->
+         <div class="flex flex-col space-y-4">
+        <div class="bg-yellow-100 p-4 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-yellow-700">In Progress</h2>
+        </div>
+        <div id="inProgressList" class="space-y-2 border  h-[100vh] border-gray-300 p-4 rounded-lg overflow-y-auto max-h-96">
+            <!-- Tasks will be added here dynamically -->
+        </div>
+         </div>
+
+        <!-- Completed Column -->
+         <div class="flex flex-col space-y-4">
+        <div class="bg-green-100 p-4 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-green-700">Completed</h2>
+        </div>
+        <div id="completedList" class="space-y-2  h-[100vh] border border-gray-300 p-4 rounded-lg overflow-y-auto max-h-96">
+            <!-- Tasks will be added here dynamically -->
+        </div>
+        </div>
+    </div>
+
+    <script src="../src/js/index.js"></script>
+</body>
+</html>
