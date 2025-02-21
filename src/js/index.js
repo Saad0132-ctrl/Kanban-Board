@@ -20,6 +20,7 @@
     let taskStatus=document.getElementById("taskStatus")
 
     saveButton.addEventListener('click',()=>{
+        if(titleField.value!=="" && descriptionField.value!=="" && taskStatus.value!==""){
     let index=saveButton.getAttribute("index")
         let task={
             title:titleField.value,
@@ -39,7 +40,12 @@
         descriptionField.value=""
         taskStatus.value=""
         displayTask()
-    })
+    }
+    else{
+        alert("Please fill all the fields")
+    }}
+
+)
     let todoList=document.getElementById("todoList")
     let inprogressList=document.getElementById("inProgressList")
     let completedList=document.getElementById("completedList")
