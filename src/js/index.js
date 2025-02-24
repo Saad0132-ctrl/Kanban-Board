@@ -32,8 +32,6 @@ saveButton.addEventListener('click', () => {
     if (index == null) {
       array.unshift(task)
     } else {
-      // array.splice(index, 1)
-      // array.unsift(task)
       array[index] = task
     }
     localStorage.setItem('task', JSON.stringify(array))
