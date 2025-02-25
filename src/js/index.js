@@ -139,16 +139,26 @@ document.addEventListener('drop', event => {
     array[index].status = newStatus
     localStorage.setItem('task', JSON.stringify(array))
     displayTask()
-  } else if (newStatus && array[index].status === newStatus) {
+  } 
+  if (newStatus && array[index].status === newStatus) {
+    let dragged=array[index]
     let targe = event.target.closest('.task')
+    if(targe){
     let targetIndex = parseInt(targe.getAttribute('index'))
-    let temp = array[targetIndex]
-    array[targetIndex] = array[index]
-    array[index] = temp
+    array.splice(index,1)
+    array.splice(targetIndex,0,dragged)
     localStorage.setItem('task', JSON.stringify(array))
     displayTask()
   }
-})
+  else{
+    array.splice(index,1)
+    array.push(dragged)
+    localStorage.setItem('task', JSON.stringify(array))
+    displayTask()
+ 
+  }
+}})
+
 function getDropTarget (clientX, clientY) {
   let lists = [todoList, inprogressList, completedList]
   let statuses = ['todo', 'inprogress', 'completed']
