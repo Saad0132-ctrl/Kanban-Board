@@ -62,7 +62,8 @@ function displayTask (task = array) {
             <div class="bg-white-100 p-4 rounded-lg shadow-lg">
                 <h3 class="font-semibold">${data.title}</h3>
                 <p>${data.description}</p>
-                <button  class="deleteButton bg-red-500 text-white px-4 py-2 rounded-lg mt-4">Delete</button>
+                <button  class="deleteButton bg-red-500 text-white px-4 py-2 hover:bg-red-600 rounded-lg mt-4">Delete</button>
+                <button  class=" bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mt-4">Edit</button>
                 </div>
             `
     let draggedElement = null
