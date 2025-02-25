@@ -63,7 +63,6 @@ function displayTask (task = array) {
                 <h3 class="font-semibold">${data.title}</h3>
                 <p>${data.description}</p>
                 <button  class="deleteButton bg-red-500 text-white px-4 py-2 hover:bg-red-600 rounded-lg mt-4">Delete</button>
-                <button  class=" bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mt-4">Edit</button>
                 </div>
             `
     let draggedElement = null
@@ -81,8 +80,20 @@ function displayTask (task = array) {
         draggedElement = null
       }
     })
+    let deleteButton = containerElement.querySelector('.deleteButton')
+    deleteButton.addEventListener('click', event => {
+      event.stopPropagation()
+      array.splice(index, 1)
+      localStorage.setItem('task', JSON.stringify(array))
+      displayTask()
+    })
+    let editButton=document.createElement('button')
+    editButton.textContent='Edit'
+    editButton.className='bg-green-500 text-white px-4 py-2 hover:bg-green-600 rounded-lg mt-4 mr-2'
 
-    containerElement.addEventListener('click', () => {
+    deleteButton.parentNode.insertBefore(editButton, deleteButton)
+
+    editButton.addEventListener('click', () => {
       let paragraphId = document.getElementById('paragraphId')
       titleField.value = data.title
       descriptionField.value = data.description
@@ -101,13 +112,7 @@ function displayTask (task = array) {
       completedList.appendChild(containerElement)
     }
 
-    let container = containerElement.querySelector('.deleteButton')
-    container.addEventListener('click', event => {
-      event.stopPropagation()
-      array.splice(index, 1)
-      localStorage.setItem('task', JSON.stringify(array))
-      displayTask()
-    })
+  
   })
 }
 displayTask()
